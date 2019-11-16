@@ -18,56 +18,6 @@ If you use npm. Run
 npm i use-what-changed --save
 ```
 
-## Usage
-
-Note: This hook only logs in the development environment. It make use of standard process.env.NODE_ENV to decide.
-
-1. When only dependency are passed as the single argument
-
-```jsx
-import useWhatChanged from 'use-what-changed';
-
-function App() {
-  const [a, setA] = React.useState(0);
-
-  const [b, setB] = React.useState(0);
-
-  const [c, setC] = React.useState(0);
-
-  const [d, setD] = React.useState(0);
-
-  // Just place the useWhatChanged hook call with dependency before your
-
-  // useEffect, useCallback or useMemo
-
-  useWhatChanged([a, b, c, d]); // debugs the below useEffect
-
-  React.useEffect(() => {
-    // console.log("some thing changed , need to figure out")
-  }, [a, b, c, d]);
-
-  return <div className="container">Your app jsx</div>;
-}
-```
-
-<p  align="center"><img  src="demoimages/indexonly.png"  width="500"  align="center"></p>
-
-Above snapshot show the console log when b and c has changed in the above code example.
-
-2. Pass two arguments to useWhatChanged which makes it possible for useWhatChanged to log the names of the variables also.
-
-```jsx
-useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
-```
-
-<p  align="center"><img  src="demoimages/indexandname.png"  width="500"  align="center"></p>
-
-## Color coding
-
-A unique background color will be given to each effect preceding title text. It helps us in recognising the specific effect when debugging. A unique id is also given to help the debugging further.
-
-<p  align="center"><img  src="demoimages/multipleeffectandcolorcoding.png"  width="500"  align="center"></p>
-
 ## Motivation
 
 I personally have been working on hooks for quite a long time. I use react hooks every day in my open source projects and also at work.
@@ -122,7 +72,57 @@ useEffect(() => {
 
 However we can do it , it quite too much of work every time you run in the issue , where useEffect callback is running unexpectedly.
 
-To solve the above problem, I tried to create something which can enhance developer experience in this case. Let's see my try for this
+To solve the above problem, I tried to create something which can enhance developer experience in this case. Let's see my try for the above problems.
+
+## Usage
+
+Note: This hook only logs in the development environment. It make use of standard process.env.NODE_ENV to decide.
+
+1. When only dependency are passed as the single argument
+
+```jsx
+import useWhatChanged from 'use-what-changed';
+
+function App() {
+  const [a, setA] = React.useState(0);
+
+  const [b, setB] = React.useState(0);
+
+  const [c, setC] = React.useState(0);
+
+  const [d, setD] = React.useState(0);
+
+  // Just place the useWhatChanged hook call with dependency before your
+
+  // useEffect, useCallback or useMemo
+
+  useWhatChanged([a, b, c, d]); // debugs the below useEffect
+
+  React.useEffect(() => {
+    // console.log("some thing changed , need to figure out")
+  }, [a, b, c, d]);
+
+  return <div className="container">Your app jsx</div>;
+}
+```
+
+<p  align="center"><img  src="demoimages/indexonly.png"  width="500"  align="center"></p>
+
+Above snapshot show the console log when b and c has changed in the above code example.
+
+2. Pass two arguments to useWhatChanged which makes it possible for useWhatChanged to log the names of the variables also.
+
+```jsx
+useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
+```
+
+<p  align="center"><img  src="demoimages/indexandname.png"  width="500"  align="center"></p>
+
+## Color coding
+
+A unique background color will be given to each effect preceding title text. It helps us in recognising the specific effect when debugging. A unique id is also given to help the debugging further.
+
+<p  align="center"><img  src="demoimages/multipleeffectandcolorcoding.png"  width="500"  align="center"></p>
 
 ## Contributing
 
