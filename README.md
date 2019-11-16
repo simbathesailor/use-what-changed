@@ -1,5 +1,7 @@
 # use-what-changed
 
+<p  align="center"><img  src="demoimages/cover.png"  width="500"  align="center"></p>
+
 A simple hook to debug various Reactjs hooks which supports dependency as the second argument.
 
 ## Install
@@ -62,7 +64,7 @@ useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
 
 ## Color coding
 
-A unique background color will be given to each effect. It helps us in recognising the specific effect when debugging. A unique id will also be given to help the debugging further.
+A unique background color will be given to each effect preceding title text. It helps us in recognising the specific effect when debugging. A unique id is also given to help the debugging further.
 
 <p  align="center"><img  src="demoimages/multipleeffectandcolorcoding.png"  width="500"  align="center"></p>
 

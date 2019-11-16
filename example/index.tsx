@@ -38,7 +38,7 @@ function App() {
 
   const t = { a: 1 };
 
-  useWhatChanged([a, b, c, d], 'a, b, c, d');
+  useWhatChanged([a, b, c, d], 'dispatch, count, data, id');
 
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
