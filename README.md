@@ -76,7 +76,7 @@ To solve the above problem, I tried to create something which can enhance develo
 
 ## Usage
 
-Note: This hook only logs in the development environment. It make use of standard process.env.NODE_ENV to decide.
+Note: This hook only logs in the development environment. It make use of standard process.env.NODE_ENV to decide. Open devtools console tab to see the logs.
 
 1. When only dependency are passed as the single argument
 
@@ -120,9 +120,14 @@ useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
 
 ## Color coding
 
-A unique background color will be given to each effect preceding title text. It helps us in recognising the specific effect when debugging. A unique id is also given to help the debugging further.
+A unique background color will be given to each title text. It helps us in recognising the specific effect when debugging. A unique id is also given to help the debugging further.
 
 <p  align="center"><img  src="demoimages/multipleeffectandcolorcoding.png"  width="500"  align="center"></p>
+
+## Demo link
+
+![Demo link](https://6l8vp.csb.app/)
+![Codesandbox link](https://codesandbox.io/s/fervent-shockley-6l8vp)
 
 ## Contributing
 
