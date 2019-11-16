@@ -1,8 +1,8 @@
 # use-what-changed
 
-<p  align="center"><img  src="demoimages/cover.png"  width="500"  align="center"></p>
+<h2 align="center">A simple hook to debug various Reactjs hooks which supports dependency as the second argument.</h2>
 
-A simple hook to debug various Reactjs hooks which supports dependency as the second argument.
+<p  align="center"><img  src="demoimages/cover.png"  width="500"  align="center"></p>
 
 ## Install
 
