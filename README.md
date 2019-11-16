@@ -1,6 +1,6 @@
 # use-what-changed
 
-<h2 align="center">A simple hook to debug various Reactjs hooks which supports dependency as the second argument.</h2>
+<h2 align="center">A simple hook to debug major Reactjs hooks and custom hooks.</h2>
 
 <p  align="center"><img  src="demoimages/cover.png"  width="500"  align="center"></p>
 
