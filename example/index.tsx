@@ -36,8 +36,6 @@ function App() {
   const [c, setC] = React.useState(0);
   const [d, setD] = React.useState(0);
 
-  const t = { a: 1 };
-
   useWhatChanged([a, b, c, d], 'a, b, c, d');
 
   React.useEffect(() => {
@@ -45,7 +43,8 @@ function App() {
   }, [a, b, c, d]);
   return (
     <div className="container">
-      <h1 className="title">Click to change values and see logs</h1>
+      <h1 className="title">Open devtools and observer console tab logs</h1>
+      <h3 className="title">Click to change values and see logs</h3>
       <div
         style={{
           fontSize: '30px',
