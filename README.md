@@ -20,7 +20,7 @@ npm i use-what-changed --save
 
 ## Motivation
 
-I personally have been working on hooks for quite a long time. I use react hooks every day in my open source projects and also at work.
+I have been working on hooks for quite a long time. I use react hooks every day in my open source projects and also at work.
 
 Now, using useEffect, useCallback, useMemo have really helped me compose the logic well together. But when the dependency list gets long. When I say long , it can be any thing greater than 3 for me and can be more or less for others.
 
