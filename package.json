@@ -1,5 +1,5 @@
 {
-  "name": "use-what-changed",
+  "name": "@simbathesailor/use-what-changed",
   "version": "0.1.0",
   "license": "MIT",
   "author": "simbathesailor",
@@ -39,5 +39,18 @@
     "tsdx": "^0.11.0",
     "tslib": "^1.10.0",
     "typescript": "^3.7.2"
-  }
+  },
+  "description": "A simple hook to debug various Reactjs hooks which supports dependency as the second argument.",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simbathesailor/use-what-changed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/simbathesailor/use-what-changed/issues"
+  },
+  "homepage": "https://github.com/simbathesailor/use-what-changed#readme"
 }

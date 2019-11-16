@@ -1,167 +1,147 @@
-# TSDX React User Guide
+# use-what-changed
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+A simple hook to debug various Reactjs hooks which supports dependency as the second argument.
 
-> This TSDX setup is meant for developing React components (not apps!) that can be published to NPM. If you’re looking to build an app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+## Install
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+If you use yarn. Run
 
-## Commands
-
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
-
-The recommended workflow is to run TSDX in one terminal:
-
-```
-npm start # or yarn start
+```sh
+yarn add use-what-changed
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
-
-Then run the example inside another:
+If you use npm. Run
 
 ```
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
+npm i use-what-changed --save
 ```
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, [we use Parcel's aliasing](https://github.com/palmerhq/tsdx/pull/88/files).
+## Usage
 
-To do a one-off build, use `npm run build` or `yarn build`.
+Note: This hook only logs in the development environment. It make use of standard process.env.NODE_ENV to decide.
 
-To run tests, use `npm test` or `yarn test`.
+1. When only dependency are passed as the single argument
 
-## Configuration
+```jsx
+import useWhatChanged from 'use-what-changed';
 
-Code quality is [set up for you](https://github.com/palmerhq/tsdx/pull/45/files) with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
+function App() {
+  const [a, setA] = React.useState(0);
 
-### Jest
+  const [b, setB] = React.useState(0);
 
-Jest tests are set up to run with `npm test` or `yarn test`. This runs the test watcher (Jest) in an interactive mode. By default, runs tests related to files changed since the last commit.
+  const [c, setC] = React.useState(0);
 
-#### Setup Files
+  const [d, setD] = React.useState(0);
 
-This is the folder structure we set up for you:
+  // Just place the useWhatChanged hook call with dependency before your
 
-```
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
+  // useEffect, useCallback or useMemo
 
-#### React Testing Library
+  useWhatChanged([a, b, c, d]); // debugs the below useEffect
 
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
+  React.useEffect(() => {
+    // console.log("some thing changed , need to figure out")
+  }, [a, b, c, d]);
 
-### Rollup
-
-TSDX uses [Rollup v1.x](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### Travis
-
-_to be completed_
-
-### Circle
-
-_to be completed_
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
+  return <div className="container">Your app jsx</div>;
 }
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+<p  align="center"><img  src="demoimages/indexonly.png"  width="500"  align="center"></p>
 
-## Module Formats
+Above snapshot show the console log when b and c has changed in the above code example.
 
-CJS, ESModules, and UMD module formats are supported.
+2. Pass two arguments to useWhatChanged which makes it possible for useWhatChanged to log the names of the variables also.
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
-
-## Using the Playground
-
-```
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
+```jsx
+useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
 ```
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**!
+<p  align="center"><img  src="demoimages/indexandname.png"  width="500"  align="center"></p>
 
-## Deploying the Playground
+## Color coding
 
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
+A unique background color will be given to each effect. It helps us in recognising the specific effect when debugging. A unique id will also be given to help the debugging further.
 
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
+<p  align="center"><img  src="demoimages/multipleeffectandcolorcoding.png"  width="500"  align="center"></p>
+
+## Motivation
+
+I personally have been working on hooks for quite a long time. I use react hooks every day in my open source projects and also at work.
+
+Now, using useEffect, useCallback, useMemo have really helped me compose the logic well together. But when the dependency list gets long. When I say long , it can be any thing greater than 3 for me and can be more or less for others.
+
+With these large dependency array, I found it really difficult to debug and find out what is causing my useEffect to run again( same for useCallback and useMemo). I know two strategies to debug:
+
+1. Break the useEffect logic into multiple useEffect. It is still fine, but expertise and time constraints will be there. People will not break the useEffect logic into smaller pieces first, they will try to spend time using logging the values and adding debugger so that not to change the production code.
+
+2) Make use of usePrevious hook which can be defined something like this
+
+```jsx
+import React from 'react';
+
+function usePrevious(value) {
+  const ref = React.useRef(value);
+
+  React.useEffect(() => {
+    ref.current = value;
+  });
+
+  return ref.current;
+}
+
+export default usePrevious;
 ```
 
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
+And can be consumed like this:
 
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
+```jsx
+const previousA = usePrevious(a);
+
+const previousB = usePrevious(b);
+
+const previousC = usePrevious(c);
+
+useEffect(() => {
+  if (previousA !== a) {
+    console.log(`a has changed from ${previousA} to ${a}`);
+  }
+
+  if (previousB !== b) {
+    console.log(`a has changed from ${previousB} to ${b}`);
+  }
+
+  if (previousC !== c) {
+    console.log(`a has changed from ${previousC} to ${c}`);
+  }
+}, [a, b, c]);
 ```
 
-## Named Exports
+However we can do it , it quite too much of work every time you run in the issue , where useEffect callback is running unexpectedly.
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
+To solve the above problem, I tried to create something which can enhance developer experience in this case. Let's see my try for this
 
-## Including Styles
+## Contributing
 
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+## Versioning
 
-## Publishing to NPM
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
-We recommend using https://github.com/sindresorhus/np.
+## Authors
 
-## Usage with Lerna
+[simbathesailor](https://github.com/simbathesailor)
 
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
+## License
 
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
+## Contributors
 
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+
+<table><tr><td  align="center"><a  href="https://github.com/simbathesailor"><img  src="https://avatars2.githubusercontent.com/u/5938110?s=400&u=f94d3ad624faa17c799d7bbd88cf2d2170b26813&v=4"  width="100px;"  alt="Anil kumar chaudhary"/><br /><sub><b>Anil kumar Chaudhary</b></sub></a><br /><a  href="https://github.com/simbathesailor/use-what-changed/commits?author=simbathesailor"  title="Code">💻</a>  <a  href="#ideas-simbathesailor"  title="Ideas, Planning, & Feedback">🤔</a>  <a  href="#design-simbathesailor"  title="Design">🎨</a>  <a  href="https://github.com/simbathesailor/use-what-changed/commits?author=simbathesailor"  title="Documentation">📖</a>  <a  href="https://github.com/simbathesailor/use-what-changed/issues/created_by/simbathesailor"  title="Bug reports">🐛</a></td></tr></table>
