@@ -126,8 +126,8 @@ A unique background color will be given to each title text. It helps us in recog
 
 ## Demo link
 
-![Demo link](https://6l8vp.csb.app/)
-![Codesandbox link](https://codesandbox.io/s/fervent-shockley-6l8vp)
+[Demo link](https://6l8vp.csb.app/)
+[Codesandbox link](https://codesandbox.io/s/fervent-shockley-6l8vp)
 
 ## Contributing
 
