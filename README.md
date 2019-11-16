@@ -1,6 +1,11 @@
 # use-what-changed
 
 <h2 align="center">A simple hook to debug major Reactjs hooks and custom hooks.</h2>
+<p align="center">
+    <img src="https://badgen.net/npm/v/@simbathesailor/use-what-changed">
+    <img src="https://badgen.net/bundlephobia/minzip/@simbathesailor/use-what-changed">
+    <img src="https://badgen.net/npm/dw/@simbathesailor/use-what-changed">
+</p>
 
 <p  align="center"><img  src="demoimages/cover.png"  width="500"  align="center"></p>
 
