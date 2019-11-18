@@ -33,7 +33,7 @@ With these large dependency array, I found it really difficult to debug and find
 
 1. Break the useEffect logic into multiple useEffect. It is still fine, but expertise and time constraints will be there. People will not break the useEffect logic into smaller pieces first, they will try to spend time using logging the values and adding debugger so that not to change the production code.
 
-2) Make use of usePrevious hook which can be defined something like this
+2. Make use of usePrevious hook which can be defined something like this
 
 ```jsx
 import React from 'react';
