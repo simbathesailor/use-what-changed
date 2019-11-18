@@ -109,7 +109,7 @@ function App() {
 
   return <div className="container">Your app jsx</div>;
 }
-<pre>
+</pre>
 
 <p  align="center"><img  src="demoimages/indexonly.png"  width="500"  align="center"></p>
 
