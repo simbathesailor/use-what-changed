@@ -85,7 +85,7 @@ Note: This hook only logs in the development environment. It make use of standar
 
 1. When only dependency are passed as the single argument
 
-<pre>
+```jsx
 import useWhatChanged from 'use-what-changed';
 
 function App() {
@@ -101,7 +101,7 @@ function App() {
 
   // useEffect, useCallback or useMemo
 
-  <b>useWhatChanged([a, b, c, d]); // debugs the below useEffect</b>
+  useWhatChanged([a, b, c, d]); // debugs the below useEffect
 
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
@@ -109,7 +109,7 @@ function App() {
 
   return <div className="container">Your app jsx</div>;
 }
-</pre>
+```
 
 <p  align="center"><img  src="demoimages/indexonly.png"  width="500"  align="center"></p>
 
