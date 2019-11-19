@@ -134,7 +134,7 @@ A unique background color will be given to each title text. It helps us in recog
 [Demo link](https://6l8vp.csb.app/)
 [Codesandbox link](https://codesandbox.io/s/fervent-shockley-6l8vp)
 
-A article is on the way. Will add the link here once published.
+[Medium article link](https://medium.com/@anilchaudhary453/debug-your-reactjs-hooks-with-ease-159691843c3a)
 
 ## Contributing
 
