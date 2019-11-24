@@ -14,13 +14,13 @@
 If you use yarn. Run
 
 ```sh
-yarn add use-what-changed
+yarn add @simbathesailor/use-what-changed
 ```
 
 If you use npm. Run
 
 ```
-npm i use-what-changed --save
+npm i @simbathesailor/use-what-changed --save
 ```
 
 ## Motivation
