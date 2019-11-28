@@ -86,7 +86,7 @@ Note: This hook only logs in the development environment. It make use of standar
 1. When only dependency are passed as the single argument
 
 ```jsx
-import useWhatChanged from 'use-what-changed';
+import { useWhatChanged } from 'use-what-changed';
 
 function App() {
   const [a, setA] = React.useState(0);

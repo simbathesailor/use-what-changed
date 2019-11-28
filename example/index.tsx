@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import useWhatChanged from '../.';
+import { useWhatChanged } from '../.';
 import './styles.css';
 
 function Child1(props) {
