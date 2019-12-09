@@ -1,11 +1,9 @@
 import React from 'react';
 
-interface IWindow extends Window {
-  what_debug_changed?: number;
-}
 type TypeDependency = any[];
 type TypeDependencyNames = string;
 
+let what_debug_changed = 0;
 /**
  * Taken random color logic from some stackoverflow answer
  */
@@ -54,17 +52,11 @@ function useWhatChanged(
   let isDependencyArr = Array.isArray(dependency);
 
   React.useEffect(() => {
-    const MyWindow: IWindow = window;
-    if (MyWindow) {
-      if (MyWindow.what_debug_changed) {
-        MyWindow.what_debug_changed++;
-        whatChangedHookCountRef.current = MyWindow.what_debug_changed;
-      } else {
-        whatChangedHookCountRef.current = 1;
-        MyWindow.what_debug_changed = 1;
-      }
-      backgroundColorRef.current = getRandomColor();
-    }
+    // const MyWindow: IWindow = window;
+    what_debug_changed++;
+
+    whatChangedHookCountRef.current = what_debug_changed;
+    backgroundColorRef.current = getRandomColor();
   }, []);
 
   React.useEffect(() => {

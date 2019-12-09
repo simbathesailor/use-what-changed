@@ -41,6 +41,12 @@ function App() {
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b, c, d]);
+
+  useWhatChanged([a, b], 'a, b');
+  React.useEffect(() => {
+    // console.log("some thing changed , need to figure out")
+  }, [a, b]);
+
   return (
     <div className="container">
       <h1 className="title">Open devtools and observer console tab logs</h1>
