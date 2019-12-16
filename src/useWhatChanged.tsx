@@ -49,18 +49,30 @@ function useWhatChanged(
   // For assigning color for easy debugging
   const backgroundColorRef = React.useRef('');
 
-  let isDependencyArr = Array.isArray(dependency);
+  let isDependencyArr = Array.isArray(dependencyRef.current);
 
   React.useEffect(() => {
     // const MyWindow: IWindow = window;
-    what_debug_changed++;
+    if (
+      dependencyRef.current &&
+      isDependencyArr &&
+      dependencyRef.current.length > 1
+    ) {
+      what_debug_changed++;
 
-    whatChangedHookCountRef.current = what_debug_changed;
-    backgroundColorRef.current = getRandomColor();
-  }, []);
+      whatChangedHookCountRef.current = what_debug_changed;
+      backgroundColorRef.current = getRandomColor();
+    }
+  }, [dependencyRef, isDependencyArr]);
 
   React.useEffect(() => {
-    if (!dependency) {
+    if (
+      !(
+        dependencyRef.current &&
+        isDependencyArr &&
+        dependencyRef.current.length > 1
+      )
+    ) {
       return;
     }
     // invariant(
@@ -80,7 +92,7 @@ function useWhatChanged(
     // More info, if needed by user
     const stringSplitted = dependencyNames ? dependencyNames.split(',') : null;
 
-    const whatChanged = dependency.reduce((acc, dep, index) => {
+    const whatChanged = dependencyRef.current.reduce((acc, dep, index) => {
       if (dependencyRef.current && dep !== dependencyRef.current[index]) {
         const oldValue = dependencyRef.current[index];
         dependencyRef.current[index] = dep;

@@ -37,7 +37,8 @@ function App() {
   const [d, setD] = React.useState(0);
 
   useWhatChanged([a, b, c, d], 'a, b, c, d');
-
+  // uwc-debug-disabled
+  // uwc-debug
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b, c, d]);
@@ -46,6 +47,9 @@ function App() {
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b]);
+
+  useWhatChanged();
+  useWhatChanged([]);
 
   return (
     <div className="container">
