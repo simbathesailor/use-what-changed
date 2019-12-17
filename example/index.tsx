@@ -43,7 +43,7 @@ function App() {
     // console.log("some thing changed , need to figure out")
   }, [a, b, c, d]);
 
-  useWhatChanged([a, b], 'a, b');
+  useWhatChanged([a], 'a');
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b]);

@@ -70,7 +70,7 @@ function useWhatChanged(
       !(
         dependencyRef.current &&
         isDependencyArr &&
-        dependencyRef.current.length > 1
+        dependencyRef.current.length > 0
       )
     ) {
       return;
