@@ -92,38 +92,40 @@ function useWhatChanged(
     // More info, if needed by user
     const stringSplitted = dependencyNames ? dependencyNames.split(',') : null;
 
-    const whatChanged = dependencyRef.current.reduce((acc, dep, index) => {
-      if (dependencyRef.current && dep !== dependencyRef.current[index]) {
-        const oldValue = dependencyRef.current[index];
-        dependencyRef.current[index] = dep;
-        if (dependencyNames && stringSplitted) {
-          acc[`${stringSplitted[index]} "✅"`] = {
-            'Old Value': getPrintableInfo(oldValue),
-            'New Value': getPrintableInfo(dep),
-          };
-        } else {
-          acc[`${index} "✅"`] = {
-            'Old Value': getPrintableInfo(oldValue),
-            'New Value': getPrintableInfo(dep),
-          };
-        }
+    const whatChanged = dependency
+      ? dependency.reduce((acc, dep, index) => {
+          if (dependencyRef.current && dep !== dependencyRef.current[index]) {
+            const oldValue = dependencyRef.current[index];
+            dependencyRef.current[index] = dep;
+            if (dependencyNames && stringSplitted) {
+              acc[`${stringSplitted[index]} "✅"`] = {
+                'Old Value': getPrintableInfo(oldValue),
+                'New Value': getPrintableInfo(dep),
+              };
+            } else {
+              acc[`${index} "✅"`] = {
+                'Old Value': getPrintableInfo(oldValue),
+                'New Value': getPrintableInfo(dep),
+              };
+            }
 
-        return acc;
-      }
-      if (dependencyNames && stringSplitted) {
-        acc[`${stringSplitted[index]} "⏺"`] = {
-          'Old Value': getPrintableInfo(dep),
-          'New Value': getPrintableInfo(dep),
-        };
-      } else {
-        acc[`${index} "⏺"`] = {
-          'Old Value': getPrintableInfo(dep),
-          'New Value': getPrintableInfo(dep),
-        };
-      }
+            return acc;
+          }
+          if (dependencyNames && stringSplitted) {
+            acc[`${stringSplitted[index]} "⏺"`] = {
+              'Old Value': getPrintableInfo(dep),
+              'New Value': getPrintableInfo(dep),
+            };
+          } else {
+            acc[`${index} "⏺"`] = {
+              'Old Value': getPrintableInfo(dep),
+              'New Value': getPrintableInfo(dep),
+            };
+          }
 
-      return acc;
-    }, {});
+          return acc;
+        }, {})
+      : {};
     if (isDevelopment) {
       console.table(whatChanged);
     }
