@@ -38,7 +38,8 @@ const isDevelopment = true;
 
 function useWhatChanged(
   dependency?: TypeDependency,
-  dependencyNames?: TypeDependencyNames
+  dependencyNames?: TypeDependencyNames,
+  suffix?: string
 ) {
   // This ref is responsible for book keeping of the old value
   const dependencyRef = React.useRef(dependency);
@@ -66,13 +67,11 @@ function useWhatChanged(
   }, [dependencyRef, isDependencyArr]);
 
   React.useEffect(() => {
-    if (
-      !(
-        dependencyRef.current &&
-        isDependencyArr &&
-        dependencyRef.current.length > 0
-      )
-    ) {
+    if (!(dependencyRef.current && isDependencyArr)) {
+      return;
+    }
+
+    if (dependencyRef.current.length === 0) {
       return;
     }
     // invariant(
@@ -83,7 +82,9 @@ function useWhatChanged(
     // );
     if (isDevelopment) {
       console.log(
-        `%c What Changed in Effect ID ${whatChangedHookCountRef.current} `,
+        `%c What Changed in Effect ID ${
+          whatChangedHookCountRef.current
+        } ${suffix || ''}`,
         `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
         '🧐👇'
       );

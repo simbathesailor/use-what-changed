@@ -36,17 +36,20 @@ function App() {
   const [c, setC] = React.useState(0);
   const [d, setD] = React.useState(0);
 
-  useWhatChanged([a, b, c, d], 'a, b, c, d');
+  useWhatChanged([a, b, c, d], 'a, b, c, d', 'FIRST EFFECT');
   // uwc-debug-disabled
   // uwc-debug
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b, c, d]);
 
-  useWhatChanged([a], 'a');
+  useWhatChanged([a], 'a', 'SECOND EFFECT');
   React.useEffect(() => {
     // console.log("some thing changed , need to figure out")
   }, [a, b]);
+
+  useWhatChanged([a], 'a', 'CHECK THIS');
+  React.useMemo(() => {}, [a]);
 
   useWhatChanged();
   useWhatChanged([]);
