@@ -56,7 +56,7 @@ function useWhatChanged(
     if (
       dependencyRef.current &&
       isDependencyArr &&
-      dependencyRef.current.length > 1
+      dependencyRef.current.length > 0
     ) {
       what_debug_changed++;
 
