@@ -1,10 +1,15 @@
 # use-what-changed
 
-<h2 align="center">A simple hook to debug major Reactjs hooks and custom hooks.</h2>
-<p align="center">
-    <img src="https://badgen.net/npm/v/@simbathesailor/use-what-changed">
-    <img src="https://badgen.net/bundlephobia/minzip/@simbathesailor/use-what-changed">
-    <img src="https://badgen.net/npm/dw/@simbathesailor/use-what-changed">
+<h2  align="center">A simple hook to debug major Reactjs hooks and custom hooks.</h2>
+
+<p  align="center">
+
+<img  src="https://badgen.net/npm/v/@simbathesailor/use-what-changed">
+
+<img  src="https://badgen.net/bundlephobia/minzip/@simbathesailor/use-what-changed">
+
+<img  src="https://badgen.net/npm/dw/@simbathesailor/use-what-changed">
+
 </p>
 
 <p  align="center"><img  src="demoimages/cover.png"  width="500"  align="center"></p>
@@ -14,13 +19,17 @@
 If you use yarn. Run
 
 ```sh
+
 yarn add @simbathesailor/use-what-changed
+
 ```
 
 If you use npm. Run
 
 ```
+
 npm i @simbathesailor/use-what-changed --save
+
 ```
 
 ## Motivation
@@ -33,7 +42,7 @@ With these large dependency array, I found it really difficult to debug and find
 
 1. Break the useEffect logic into multiple useEffect. It is still fine, but expertise and time constraints will be there. People will not break the useEffect logic into smaller pieces first, they will try to spend time using logging the values and adding debugger so that not to change the production code.
 
-2. Make use of usePrevious hook which can be defined something like this
+2) Make use of usePrevious hook which can be defined something like this
 
 ```jsx
 import React from 'react';
@@ -123,6 +132,53 @@ useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
 
 <p  align="center"><img  src="demoimages/indexandname.png"  width="500"  align="center"></p>
 
+## Usage with babel plugin.
+
+The package can also be used with a babel plugin which make it more easy to debug.
+
+1. Run
+   ```
+   npm i @simbathesailor/use-what-changed --save-dev
+   ```
+2. Run
+
+```
+npm i @simbathesailor/babel-plugin-use-what-changed --save-dev
+```
+
+Add the plugin entry to your babel configurations
+
+```json
+{
+  "plugins": ["@simbathesailor/babel-plugin-use-what-changed"]
+}
+```
+
+Make sure the comments are enabled for your development build. As the plugin is solely dependent on the comments.
+
+Now to debug a useEffect, useMemo or useCallback. You can do something like this:
+
+```jsx
+// uwc-debug
+React.useEffect(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a, b, c, d]);
+
+// uwc-debug
+const d = React.useCallback(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a, b, d]);
+
+// uwc-debug
+const d = React.useMemo(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a]);
+```
+
+No need to add any import for use-what-changed. just add a comment //uwc-debug' above your hooks and you should start seeing use-what-changed debug consoles.
+
+<strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Now I think I feel quite comfortable with hooks. Now I do not need this often, but i think it can be quite useful for debugging hooks </strong>
+
 ## Color coding
 
 A unique background color will be given to each title text. It helps us in recognising the specific effect when debugging. A unique id is also given to help the debugging further.
@@ -132,6 +188,7 @@ A unique background color will be given to each title text. It helps us in recog
 ## Demo link
 
 [Demo link](https://ozj1e.csb.app/)
+
 [Codesandbox link](https://codesandbox.io/s/cranky-tree-ozj1e)
 
 [Medium article link](https://medium.com/@anilchaudhary453/debug-your-reactjs-hooks-with-ease-159691843c3a)
@@ -158,4 +215,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
 
-<table><tr><td  align="center"><a  href="https://github.com/simbathesailor"><img  src="https://avatars2.githubusercontent.com/u/5938110?s=400&u=f94d3ad624faa17c799d7bbd88cf2d2170b26813&v=4"  width="100px;"  alt="Anil kumar chaudhary"/><br /><sub><b>Anil kumar Chaudhary</b></sub></a><br /><a  href="https://github.com/simbathesailor/use-what-changed/commits?author=simbathesailor"  title="Code">💻</a>  <a  href="#ideas-simbathesailor"  title="Ideas, Planning, & Feedback">🤔</a>  <a  href="#design-simbathesailor"  title="Design">🎨</a>  <a  href="https://github.com/simbathesailor/use-what-changed/commits?author=simbathesailor"  title="Documentation">📖</a>  <a  href="https://github.com/simbathesailor/use-what-changed/issues/created_by/simbathesailor"  title="Bug reports">🐛</a></td></tr></table>
+<table><tr><td  align="center"><a  href="https://github.com/simbathesailor"><img  src="https://avatars2.githubusercontent.com/u/5938110?s=400&u=f94d3ad624faa17c799d7bbd88cf2d2170b26813&v=4"  width="100px;"  alt="Anil kumar chaudhary"/><br  /><sub><b>Anil kumar Chaudhary</b></sub></a><br  /><a  href="https://github.com/simbathesailor/use-what-changed/commits?author=simbathesailor"  title="Code">💻</a>  <a  href="#ideas-simbathesailor"  title="Ideas, Planning, & Feedback">🤔</a>  <a  href="#design-simbathesailor"  title="Design">🎨</a>  <a  href="https://github.com/simbathesailor/use-what-changed/commits?author=simbathesailor"  title="Documentation">📖</a>  <a  href="https://github.com/simbathesailor/use-what-changed/issues/created_by/simbathesailor"  title="Bug reports">🐛</a></td></tr></table>
