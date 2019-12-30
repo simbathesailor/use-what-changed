@@ -34,13 +34,14 @@ function getPrintableInfo(dependencyItem: any) {
   return dependencyItem;
 }
 
-const isDevelopment = true;
+const isDevelopment = process.env['NODE_ENV'] === 'development';
 
 function useWhatChanged(
   dependency?: TypeDependency,
   dependencyNames?: TypeDependencyNames,
   suffix?: string
 ) {
+  // const logRef =
   // This ref is responsible for book keeping of the old value
   const dependencyRef = React.useRef(dependency);
 
@@ -66,6 +67,25 @@ function useWhatChanged(
     }
   }, [dependencyRef, isDependencyArr]);
 
+  function logBanners({ isFirstMount }: { isFirstMount?: boolean }) {
+    if (isDevelopment) {
+      console.log(
+        `%c What Changed in Effect ID ${
+          whatChangedHookCountRef.current
+        } ${suffix || ''}`,
+        `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
+        '🧐👇',
+        `${isFirstMount ? 'FIRST RUN' : 'UPDATES'}`
+      );
+    }
+  }
+
+  const longBannersRef = React.useRef(logBanners);
+
+  React.useEffect(() => {
+    longBannersRef.current = logBanners;
+  });
+
   React.useEffect(() => {
     if (!(dependencyRef.current && isDependencyArr)) {
       return;
@@ -74,31 +94,17 @@ function useWhatChanged(
     if (dependencyRef.current.length === 0) {
       return;
     }
-    // invariant(
-    //   isDevelopment,
-    //   `%c What Changed in Effect ID ${whatChangedHookCountRef.current} `,
-    //   `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
-    //   '🧐👇'
-    // );
-    if (isDevelopment) {
-      console.log(
-        `%c What Changed in Effect ID ${
-          whatChangedHookCountRef.current
-        } ${suffix || ''}`,
-        `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
-        '🧐👇'
-      );
-    }
 
     // More info, if needed by user
     const stringSplitted = dependencyNames ? dependencyNames.split(',') : null;
-
+    let changed = false;
     const whatChanged = dependency
       ? dependency.reduce((acc, dep, index) => {
           if (dependencyRef.current && dep !== dependencyRef.current[index]) {
             const oldValue = dependencyRef.current[index];
             dependencyRef.current[index] = dep;
             if (dependencyNames && stringSplitted) {
+              changed = true;
               acc[`${stringSplitted[index]} "✅"`] = {
                 'Old Value': getPrintableInfo(oldValue),
                 'New Value': getPrintableInfo(dep),
@@ -128,6 +134,7 @@ function useWhatChanged(
         }, {})
       : {};
     if (isDevelopment) {
+      longBannersRef.current({ isFirstMount: !changed });
       console.table(whatChanged);
     }
   }, [
@@ -138,6 +145,7 @@ function useWhatChanged(
       return [];
     })(),
     dependencyRef,
+    longBannersRef,
   ]);
 }
 
