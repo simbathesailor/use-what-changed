@@ -88,50 +88,6 @@ However we can do it , it quite too much of work every time you run in the issue
 
 To solve the above problem, I tried to create something which can enhance developer experience in this case. Let's see my try for the above problems.
 
-## Usage
-
-Note: This hook only logs in the development environment. It make use of standard process.env.NODE_ENV to decide. Open devtools console tab to see the logs.
-
-1. When only dependency are passed as the single argument
-
-```jsx
-import { useWhatChanged } from '@simbathesailor/use-what-changed';
-
-function App() {
-  const [a, setA] = React.useState(0);
-
-  const [b, setB] = React.useState(0);
-
-  const [c, setC] = React.useState(0);
-
-  const [d, setD] = React.useState(0);
-
-  // Just place the useWhatChanged hook call with dependency before your
-
-  // useEffect, useCallback or useMemo
-
-  useWhatChanged([a, b, c, d]); // debugs the below useEffect
-
-  React.useEffect(() => {
-    // console.log("some thing changed , need to figure out")
-  }, [a, b, c, d]);
-
-  return <div className="container">Your app jsx</div>;
-}
-```
-
-<p  align="center"><img  src="demoimages/indexonly.png"  width="500"  align="center"></p>
-
-Above snapshot show the console log when b and c has changed in the above code example.
-
-2. Pass two arguments to useWhatChanged which makes it possible for useWhatChanged to log the names of the variables also.
-
-```jsx
-useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
-```
-
-<p  align="center"><img  src="demoimages/indexandname.png"  width="500"  align="center"></p>
-
 ## Usage with babel plugin.
 
 The package can also be used with a babel plugin which make it more easy to debug.
@@ -178,6 +134,50 @@ const d = React.useMemo(() => {
 No need to add any import for use-what-changed. just add a comment //uwc-debug' above your hooks and you should start seeing use-what-changed debug consoles.
 
 <strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Now I think I feel quite comfortable with hooks. Now I do not need this often, but i think it can be quite useful for debugging hooks </strong>
+
+## Usage
+
+Note: This hook only logs in the development environment. It make use of standard process.env.NODE_ENV to decide. Open devtools console tab to see the logs.
+
+1. When only dependency are passed as the single argument
+
+```jsx
+import { useWhatChanged } from '@simbathesailor/use-what-changed';
+
+function App() {
+  const [a, setA] = React.useState(0);
+
+  const [b, setB] = React.useState(0);
+
+  const [c, setC] = React.useState(0);
+
+  const [d, setD] = React.useState(0);
+
+  // Just place the useWhatChanged hook call with dependency before your
+
+  // useEffect, useCallback or useMemo
+
+  useWhatChanged([a, b, c, d]); // debugs the below useEffect
+
+  React.useEffect(() => {
+    // console.log("some thing changed , need to figure out")
+  }, [a, b, c, d]);
+
+  return <div className="container">Your app jsx</div>;
+}
+```
+
+<p  align="center"><img  src="demoimages/indexonly.png"  width="500"  align="center"></p>
+
+Above snapshot show the console log when b and c has changed in the above code example.
+
+2. Pass two arguments to useWhatChanged which makes it possible for useWhatChanged to log the names of the variables also.
+
+```jsx
+useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
+```
+
+<p  align="center"><img  src="demoimages/indexandname.png"  width="500"  align="center"></p>
 
 ## Color coding
 
