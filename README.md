@@ -104,9 +104,16 @@ npm i @simbathesailor/babel-plugin-use-what-changed --save-dev
 
 Add the plugin entry to your babel configurations
 
-```json
+```js
 {
-  "plugins": ["@simbathesailor/babel-plugin-use-what-changed"]
+  "plugins": [
+    [
+      "@simbathesailor/babel-plugin-use-what-changed",
+      {
+        "active": process.env.NODE_ENV === "development" // boolean
+      }
+    ]
+  ]
 }
 ```
 
