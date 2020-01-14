@@ -35,8 +35,9 @@ function App() {
   const [b, setB] = React.useState(0);
   const [c, setC] = React.useState(0);
   const [d, setD] = React.useState(0);
+  const ref = React.useRef(null);
 
-  useWhatChanged([a, b, c, d], 'a, b, c, d', 'FIRST EFFECT');
+  useWhatChanged([a, b, c, d, ref], 'a, b, c, d, ref', 'FIRST EFFECT');
   // uwc-debug-disabled
   // uwc-debug
   React.useEffect(() => {
@@ -55,7 +56,7 @@ function App() {
   useWhatChanged([]);
 
   return (
-    <div className="container">
+    <div className="container" ref={ref}>
       <h1 className="title">Open devtools and observer console tab logs</h1>
       <h3 className="title">Click to change values and see logs</h3>
       <div

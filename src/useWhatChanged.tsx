@@ -28,8 +28,15 @@ function getPrintableInfo(dependencyItem: any) {
   /**
    * Printing the info into viewable format
    */
-  if (isObject(dependencyItem) || Array.isArray(dependencyItem))
-    return JSON.stringify(dependencyItem, null, 2);
+  if (isObject(dependencyItem) || Array.isArray(dependencyItem)) {
+    let ans;
+    try {
+      ans = JSON.stringify(dependencyItem, null, 2);
+    } catch (e) {
+      ans = 'CIRCULAR JSON';
+    }
+    return ans;
+  }
 
   return dependencyItem;
 }
