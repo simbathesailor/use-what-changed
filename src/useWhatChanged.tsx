@@ -112,12 +112,12 @@ function useWhatChanged(
             dependencyRef.current[index] = dep;
             if (dependencyNames && stringSplitted) {
               changed = true;
-              acc[`${stringSplitted[index]} "✅"`] = {
+              acc[`"✅" ${stringSplitted[index]}`] = {
                 'Old Value': getPrintableInfo(oldValue),
                 'New Value': getPrintableInfo(dep),
               };
             } else {
-              acc[`${index} "✅"`] = {
+              acc[`"✅" ${index}`] = {
                 'Old Value': getPrintableInfo(oldValue),
                 'New Value': getPrintableInfo(dep),
               };
@@ -126,12 +126,12 @@ function useWhatChanged(
             return acc;
           }
           if (dependencyNames && stringSplitted) {
-            acc[`${stringSplitted[index]} "⏺"`] = {
+            acc[`"⏺" ${stringSplitted[index]}`] = {
               'Old Value': getPrintableInfo(dep),
               'New Value': getPrintableInfo(dep),
             };
           } else {
-            acc[`${index} "⏺"`] = {
+            acc[`"⏺" ${index}`] = {
               'Old Value': getPrintableInfo(dep),
               'New Value': getPrintableInfo(dep),
             };
