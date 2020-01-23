@@ -77,9 +77,7 @@ function useWhatChanged(
   function logBanners({ isFirstMount }: { isFirstMount?: boolean }) {
     if (isDevelopment) {
       console.log(
-        `%c What Changed in Effect ID ${
-          whatChangedHookCountRef.current
-        } ${suffix || ''}`,
+        `%c ${whatChangedHookCountRef.current} ${suffix || ''}`,
         `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
         '🧐👇',
         `${isFirstMount ? 'FIRST RUN' : 'UPDATES'}`
