@@ -1,6 +1,4 @@
-# use-what-changed
-
-<img  src="demoimages/uwc-debug.png">
+# use-what-changed <img  src="demoimages/uwc-debug.png" height="100" width="200">
 
 <h2  align="center">A simple hook to debug major Reactjs hooks and custom hooks.</h2>
 
