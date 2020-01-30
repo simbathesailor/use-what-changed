@@ -1,5 +1,7 @@
 # use-what-changed
 
+<img  src="demoimages/uwc-debug.png">
+
 <h2  align="center">A simple hook to debug major Reactjs hooks and custom hooks.</h2>
 
 <p  align="center">
@@ -20,7 +22,7 @@ If you use yarn. Run
 
 ```sh
 
-yarn add @simbathesailor/use-what-changed
+yarn add @simbathesailor/use-what-changed --dev
 
 ```
 
@@ -28,7 +30,7 @@ If you use npm. Run
 
 ```
 
-npm i @simbathesailor/use-what-changed --save
+npm i @simbathesailor/use-what-changed --save-dev
 
 ```
 
@@ -93,9 +95,11 @@ To solve the above problem, I tried to create something which can enhance develo
 The package can also be used with a babel plugin which make it more easy to debug.
 
 1. Run
-   ```
-   npm i @simbathesailor/use-what-changed --save-dev
-   ```
+
+```
+npm i @simbathesailor/use-what-changed --save-dev
+```
+
 2. Run
 
 ```
@@ -121,6 +125,8 @@ Make sure the comments are enabled for your development build. As the plugin is 
 
 Now to debug a useEffect, useMemo or useCallback. You can do something like this:
 
+#### Debug individual hooks
+
 ```jsx
 // uwc-debug
 React.useEffect(() => {
@@ -138,7 +144,42 @@ const d = React.useMemo(() => {
 }, [a]);
 ```
 
+#### Debug complete file or line below it.
+
+```jsx
+React.useEffect(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a, b, c, d]);
+
+// uwc-debug-below
+const d = React.useCallback(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a, b, d]);
+
+const d = React.useMemo(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a]);
+```
+
+So the example will debug all the hooks below line containing // uwc-debug-below.
+
 No need to add any import for use-what-changed. just add a comment //uwc-debug' above your hooks and you should start seeing use-what-changed debug consoles.
+
+Following are the information that the plugin gives without moving back and forth across files and browser.
+
+1. Hook name which it is debugging.
+
+2. File name where hook is written
+
+3. Name of dependencies passed to hook.
+
+4. what has changed in dependency array which caused the re-run of hook with ( ✅, ⏺).
+
+5. Most important tells you old value and new value of all the dependencies.
+
+6. Tells you whether it is a first run or an update. I found it very helpful in debugging cases.
+
+7. Unique color coding and id for individual hooks for easy inspection
 
 <strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Now I think I feel quite comfortable with hooks. Now I do not need this often, but i think it can be quite useful for debugging hooks </strong>
 
