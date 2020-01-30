@@ -1,4 +1,4 @@
-# use-what-changed <img  src="demoimages/uwc-debug.png" height="50" width="100">
+# use-what-changed
 
 <h2  align="center">A simple hook to debug major Reactjs hooks and custom hooks.</h2>
 
@@ -119,7 +119,7 @@ Add the plugin entry to your babel configurations
 }
 ```
 
-Make sure the comments are enabled for your development build. As the plugin is solely dependent on the comments.
+**Make sure the comments are enabled for your development build. As the plugin is solely dependent on the comments.**
 
 Now to debug a useEffect, useMemo or useCallback. You can do something like this:
 
@@ -165,19 +165,19 @@ No need to add any import for use-what-changed. just add a comment //uwc-debug' 
 
 Following are the information that the plugin gives without moving back and forth across files and browser.
 
-1. Hook name which it is debugging.
+**1.** Hook name which it is debugging.
 
-2. File name where hook is written
+**2.** File name where hook is written
 
-3. Name of dependencies passed to hook.
+**3.** Name of dependencies passed to hook.
 
-4. what has changed in dependency array which caused the re-run of hook with ( ✅, ⏺).
+**4.** what has changed in dependency array which caused the re-run of hook with symbol icons ( ✅, ⏺).
 
-5. Most important tells you old value and new value of all the dependencies.
+**5.** Tells you old value and new value of all the dependencies.
 
-6. Tells you whether it is a first run or an update. I found it very helpful in debugging cases.
+**6.** Tells you whether it is a first run or an update. I found it very helpful in debugging cases.
 
-7. Unique color coding and id for individual hooks for easy inspection
+**7.** Unique color coding and id for individual hooks for easy inspection
 
 <strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Now I think I feel quite comfortable with hooks. Now I do not need this often, but i think it can be quite useful for debugging hooks </strong>
 
