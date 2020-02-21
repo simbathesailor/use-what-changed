@@ -183,8 +183,6 @@ Following are the information that the plugin provides:
 
 ## Usage
 
-Note: This hook only logs in the development environment. It make use of standard process.env.NODE_ENV to decide. Open devtools console tab to see the logs.
-
 1. When only dependency are passed as the single argument
 
 ```jsx
