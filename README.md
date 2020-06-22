@@ -163,7 +163,7 @@ So the example will debug all the hooks below line containing // uwc-debug-below
 
 No need to add any import for use-what-changed. just add a comment **uwc-debug** or **uwc-debug-below** above your hooks and you should start seeing use-what-changed debug consoles. No more back and forth across files and browser, adding debuggers and consoles.
 
-Following are the information that the plugin provides:
+This plugin provides following information :
 
 **1.** Hook name which it is debugging.
 
@@ -180,6 +180,8 @@ Following are the information that the plugin provides:
 **7.** Unique color coding and id for individual hooks for easy inspection
 
 <strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Definitely using this custom hook with babel plugin have saved me a lot of time and also understand unknown code using hooks</strong>
+
+---
 
 ## Usage
 
