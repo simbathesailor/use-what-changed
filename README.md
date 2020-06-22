@@ -86,6 +86,12 @@ useEffect(() => {
 
 However we can do it , it quite too much of work every time you run in the issue , where useEffect callback is running unexpectedly.
 
+3. You are coming to an unknown code base, This plugin can really enhance your developer experience when working with hooks. It can give you a strong confidence for your changes done.
+
+Even if you are coming to your own code after days. It becomes very diffucult to wrap you head around various multiple hooks . This library with babel plugin comes very handy to understand those scenarios.
+
+4. It can help beginners to learn react hooks easily. The beginners can reason about their changes easily and also avoid unintended runs of hooks.
+
 To solve the above problem, I tried to create something which can enhance developer experience in this case. Let's see my try for the above problems.
 
 ## Usage with babel plugin.
