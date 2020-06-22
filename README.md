@@ -183,7 +183,7 @@ This plugin provides following information :
 
 ---
 
-## Usage
+## Usage without babel plugin
 
 1. When only dependency are passed as the single argument
 
