@@ -139,7 +139,7 @@ function useWhatChanged(
     let changed = false;
     const whatChanged = dependency
       ? dependency.reduce((acc, dep, index) => {
-          if (dependencyRef.current && dep !== dependencyRef.current[index]) {
+          if (dependencyRef.current && (dep !== dependencyRef.current[index])) {
             const oldValue = dependencyRef.current[index];
             dependencyRef.current[index] = dep;
             if (dependencyNames && stringSplitted) {
