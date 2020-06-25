@@ -1,6 +1,6 @@
 # use-what-changed
 
-<h2  align="center">A simple hook to debug major Reactjs hooks and custom hooks.</h2>
+<h2  align="center">A tool and utility to debug major React hooks and custom hooks.</h2>
 
 <p  align="center">
 

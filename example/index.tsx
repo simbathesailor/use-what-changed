@@ -6,6 +6,9 @@ import './styles.css';
 
 function Child1(props) {
   const { c, d } = props;
+  useWhatChanged([]);
+  React.useEffect(() => {}, []);
+
   useWhatChanged([c, d], 'c, d');
   React.useEffect(() => {}, [c, d]);
 
@@ -52,8 +55,8 @@ function App() {
   useWhatChanged([a], 'a', 'CHECK THIS');
   React.useMemo(() => {}, [a]);
 
-  useWhatChanged();
-  useWhatChanged([]);
+  // useWhatChanged();
+  // useWhatChanged([]);
 
   return (
     <div className="container" ref={ref}>

@@ -43,6 +43,15 @@ function getPrintableInfo(dependencyItem: any) {
 
 const isDevelopment = process.env['NODE_ENV'] === 'development';
 
+function useHotRefs(value: any) {
+  const fnRef = React.useRef(value);
+  React.useEffect(() => {
+    fnRef.current = value;
+  });
+
+  return fnRef;
+}
+
 function useWhatChanged(
   dependency?: TypeDependency,
   dependencyNames?: TypeDependencyNames,
@@ -64,8 +73,8 @@ function useWhatChanged(
     // const MyWindow: IWindow = window;
     if (
       dependencyRef.current &&
-      isDependencyArr &&
-      dependencyRef.current.length > 0
+      isDependencyArr
+      // dependencyRef.current.length > 0
     ) {
       what_debug_changed++;
 
@@ -74,31 +83,56 @@ function useWhatChanged(
     }
   }, [dependencyRef, isDependencyArr]);
 
-  function logBanners({ isFirstMount }: { isFirstMount?: boolean }) {
+  function postConsole() {
+    console.log('');
+    console.log(
+      `%c   END                                                    `,
+      `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
+      '\n'
+    );
+    console.log('');
+    console.log('');
+  }
+  function logBanners({
+    isFirstMount,
+    suffixText,
+    isBlankArrayAsDependency,
+  }: {
+    isFirstMount?: boolean;
+    suffixText?: string;
+    isBlankArrayAsDependency?: boolean;
+  }) {
     if (isDevelopment) {
+      console.log(
+        `%c   START                                                  `,
+        `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
+        '\n'
+      );
+      console.log('');
       console.log(
         `%c ${whatChangedHookCountRef.current} ${suffix || ''}`,
         `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
-        '🧐👇',
-        `${isFirstMount ? 'FIRST RUN' : 'UPDATES'}`
+        '👇🏾',
+        `${isFirstMount ? 'FIRST RUN' : 'UPDATES'}`,
+        `${suffixText}`
       );
+
+      if (isBlankArrayAsDependency) {
+        postConsole();
+      }
     }
   }
 
-  const longBannersRef = React.useRef(logBanners);
-
-  React.useEffect(() => {
-    longBannersRef.current = logBanners;
-  });
+  const longBannersRef = useHotRefs(logBanners);
 
   React.useEffect(() => {
     if (!(dependencyRef.current && isDependencyArr)) {
       return;
     }
 
-    if (dependencyRef.current.length === 0) {
-      return;
-    }
+    // if (dependencyRef.current.length === 0) {
+    //   return;
+    // }
 
     // More info, if needed by user
     const stringSplitted = dependencyNames ? dependencyNames.split(',') : null;
@@ -139,8 +173,20 @@ function useWhatChanged(
         }, {})
       : {};
     if (isDevelopment) {
-      longBannersRef.current({ isFirstMount: !changed });
-      console.table(whatChanged);
+      const isBlankArrayAsDependency =
+        whatChanged && Object.keys(whatChanged).length === 0 && isDependencyArr;
+      longBannersRef.current({
+        isFirstMount: !changed,
+        suffixText: isBlankArrayAsDependency
+          ? ` 👉🏽 This will run only once on mount.`
+          : ``,
+        isBlankArrayAsDependency,
+      });
+
+      if (!isBlankArrayAsDependency) {
+        console.table(whatChanged);
+        postConsole();
+      }
     }
   }, [
     ...(() => {
