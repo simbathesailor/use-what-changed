@@ -18,6 +18,9 @@
 
 ## Working Example
 
+Open the codesandbox link and see the console.
+You can uncomment the other hooks, and see the console accordingly, when the value changes across rerenders.
+
 [codesandbox use-what-changed example](https://codesandbox.io/s/simabthesailoruse-what-changed-demo-q94rn?file=/src/index.js)
 
 ## Install
