@@ -84,14 +84,14 @@ function useWhatChanged(
   }, [dependencyRef, isDependencyArr]);
 
   function postConsole() {
-    console.log('');
+    console.log('\n');
     console.log(
-      `%c   END                                                    `,
+      `%c///// END /////`,
       `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
       '\n'
     );
-    console.log('');
-    console.log('');
+    console.log('\n');
+    console.log('\n');
   }
   function logBanners({
     isFirstMount,
@@ -104,11 +104,11 @@ function useWhatChanged(
   }) {
     if (isDevelopment) {
       console.log(
-        `%c   START                                                  `,
+        `%c///// START /////`,
         `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
         '\n'
       );
-      console.log('');
+      console.log('\n');
       console.log(
         `%c ${whatChangedHookCountRef.current} ${suffix || ''}`,
         `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
@@ -139,7 +139,7 @@ function useWhatChanged(
     let changed = false;
     const whatChanged = dependency
       ? dependency.reduce((acc, dep, index) => {
-          if (dependencyRef.current && (dep !== dependencyRef.current[index])) {
+          if (dependencyRef.current && dep !== dependencyRef.current[index]) {
             const oldValue = dependencyRef.current[index];
             dependencyRef.current[index] = dep;
             if (dependencyNames && stringSplitted) {
