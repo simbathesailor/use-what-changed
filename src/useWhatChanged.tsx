@@ -86,7 +86,7 @@ function useWhatChanged(
   function postConsole() {
     console.log('\n');
     console.log(
-      `%c///// END /////`,
+      `%c///// END SECTION/////`,
       `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
       '\n'
     );
@@ -104,7 +104,7 @@ function useWhatChanged(
   }) {
     if (isDevelopment) {
       console.log(
-        `%c///// START /////`,
+        `%c///// START SECTION /////`,
         `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
         '\n'
       );
