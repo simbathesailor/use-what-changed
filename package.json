@@ -1,6 +1,6 @@
 {
   "name": "@simbathesailor/use-what-changed",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "license": "MIT",
   "author": "simbathesailor",
   "main": "dist/index.js",
