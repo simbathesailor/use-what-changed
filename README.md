@@ -14,6 +14,12 @@
 
 <p  align="center"><img  src="demoimages/cover.png"  width="500"  align="center"></p>
 
+---
+
+## Working Example
+
+[codesandbox use-what-changed example](https://codesandbox.io/s/simabthesailoruse-what-changed-demo-q94rn?file=/src/index.js)
+
 ## Install
 
 If you use yarn. Run
