@@ -254,6 +254,14 @@ A unique background color will be given to each title text. It helps us in recog
 
 [Medium article link](https://medium.com/@anilchaudhary453/debug-your-reactjs-hooks-with-ease-159691843c3a)
 
+## Electron example
+
+As it is a babel plugin so can be used , anywhere where react is used and babel is used for code transformation.
+
+<p  align="center"><img  src="demoimages/electron_example.png"  width="500"  align="center"></p>
+
+[Electron repo link](https://github.com/simbathesailor/electron-learner)
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
