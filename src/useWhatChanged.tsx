@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 type TypeDependency = any[];
 type TypeDependencyNames = string;
 
 let what_debug_changed = 0;
+
+const [configuration, setConfiguration] = useState({ active: true });
+export function setUseWhatChange({ active = true }: any = {}) {
+  setConfiguration({ ...configuration, active });
+}
+
 /**
  * Taken random color logic from some stackoverflow answer
  */
@@ -41,7 +47,7 @@ function getPrintableInfo(dependencyItem: any) {
   return dependencyItem;
 }
 
-const isDevelopment = process.env['NODE_ENV'] === 'development';
+// const isDevelopment = process.env['NODE_ENV'] === 'development';
 
 function useHotRefs(value: any) {
   const fnRef = React.useRef(value);
@@ -102,7 +108,7 @@ function useWhatChanged(
     suffixText?: string;
     isBlankArrayAsDependency?: boolean;
   }) {
-    if (isDevelopment) {
+    if (configuration.active) {
       console.log(
         `%c///// START SECTION /////`,
         `background: ${backgroundColorRef.current}; color: white; font-size: 10px`,
@@ -172,7 +178,7 @@ function useWhatChanged(
           return acc;
         }, {})
       : {};
-    if (isDevelopment) {
+    if (configuration.active) {
       const isBlankArrayAsDependency =
         whatChanged && Object.keys(whatChanged).length === 0 && isDependencyArr;
       longBannersRef.current({
