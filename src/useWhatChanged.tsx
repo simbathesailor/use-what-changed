@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 type TypeDependency = any[];
 type TypeDependencyNames = string;
 
 let what_debug_changed = 0;
-
-const [configuration, setConfiguration] = useState({ active: true });
+let configuration = { active: true };
 export function setUseWhatChange({ active = true }: any = {}) {
-  setConfiguration({ ...configuration, active });
+  configuration = { ...configuration, active };
 }
 
 /**
