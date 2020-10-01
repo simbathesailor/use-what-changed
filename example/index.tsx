@@ -113,9 +113,6 @@ function App() {
         </button>
         <button
           className="action-btn"
-          // style={{
-          //   background: 'linear-gradient(15deg,#14af83,#15b89a)',
-          // }}
           onClick={() => {
             setB(b + 1);
             setC(c + 1);
