@@ -257,7 +257,13 @@ A unique background color will be given to each title text. It helps us in recog
 
 ## Electron example
 
-As it is a babel plugin so can be used , anywhere where react is used and babel is used for code transformation.
+
+As this lbrary is just javascript and react. It can be used whereever
+Reactjs exists.
+
+I have included the setup for elctron app with a repo example. 
+
+Todos: Need to add an example for react-native, which is work in progress. I will update it in a couple of days.
 
 <p  align="center"><img  src="demoimages/electron_example.png"  width="500"  align="center"></p>
 
