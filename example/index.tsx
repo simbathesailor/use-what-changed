@@ -12,6 +12,7 @@ function Child1(props) {
   useWhatChanged([c, d], 'c, d');
   React.useEffect(() => {}, [c, d]);
 
+ 
   return (
     <div className="child1">
       <span>CHILD 1</span>
@@ -57,6 +58,11 @@ function App() {
 
   // useWhatChanged();
   // useWhatChanged([]);
+
+  useWhatChanged([c, d], 'c, d', "layout effect", "useLayoutEffect");
+  React.useLayoutEffect(() => {
+    console.log("layout effect ran")
+  }, [c, d])
 
   return (
     <div className="container" ref={ref}>

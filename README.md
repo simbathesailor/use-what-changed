@@ -17,6 +17,10 @@
 
 ---
 
+## Debug following hooks
+
+*useEffect* *useCallback* *useMemo* *useLayoutEffect* *Custom hooks using core hooks*
+
 ## Working Example
 
 Open the codesandbox link and see the console.
