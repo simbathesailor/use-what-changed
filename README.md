@@ -19,7 +19,7 @@
 
 ## Debug following hooks
 
-*useEffect* *useCallback* *useMemo* *useLayoutEffect* *Custom hooks using core hooks*
+**useEffect** | **useCallback** |  **useMemo** | **useLayoutEffect** | **Custom hooks using core hooks**
 
 ## Working Example
 
@@ -240,7 +240,7 @@ Above snapshot show the console log when b and c has changed in the above code e
 2. Pass two arguments to useWhatChanged which makes it possible for useWhatChanged to log the names of the variables also.
 
 ```jsx
-useWhatChanged([a, b, c, d], 'a, b, c, d'); // debugs the below useEffect
+useWhatChanged([a, b, c, d], 'a, b, c, d', "anysuffix-string"); // debugs the below useEffect
 ```
 
 <p  align="center"><img  src="demoimages/indexandname.png"  width="500"  align="center"></p>
