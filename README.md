@@ -1,7 +1,7 @@
 # use-what-changed
 
-<h2  align="center">A tool and utility to debug major React hooks and custom hooks better than console logs and debugger</h2>
-<h3>Don't believe. Try the sample codesandbox</h3>
+<h2  align="center">A tool and utility to debug major React hooks better than console logs and debugger</h2>
+<h3 align="center">Don't believe. Try the sample codesandbox</h3>
 <h3 align="center">React | React native | React with Electron </h3>
 
 <p  align="center">
