@@ -1,7 +1,7 @@
 # use-what-changed
 
 <h2  align="center">A tool and utility to debug major React hooks better than console logs and debugger</h2>
-<h3 align="center">Don't believe. Try [this](https://codesandbox.io/s/simabthesailoruse-what-changed-demo-q94rn?file=/src/index.js) codesandbox</h3>
+<h3 align="center">Don't believe. Try <a href="https://codesandbox.io/s/simabthesailoruse-what-changed-demo-q94rn?file=/src/index.js" target="__blank">this</a</h3>
 <h3 align="center">React | React native | React with Electron </h3>
 
 <p  align="center">
