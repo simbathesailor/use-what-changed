@@ -275,6 +275,12 @@ Todos: Need to add an example for react-native, which is work in progress. I wil
 
 [Electron repo link](https://github.com/simbathesailor/electron-learner)
 
+
+## Nextjs Example
+
+[Nextjs Example](https://github.com/simbathesailor/nextjs-uwc)
+
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
