@@ -21,7 +21,7 @@
 
 ## Debug following hooks
 
-**useEffect** | **useCallback** |  **useMemo** | **useLayoutEffect** | **Custom hooks using core hooks**
+**useEffect** | **useCallback** | **useMemo** | **useLayoutEffect** | **Custom hooks using core hooks**
 
 ## Working Example
 
@@ -102,15 +102,15 @@ useEffect(() => {
 
 However we can do it , it quite too much of work every time you run in the issue , where useEffect callback is running unexpectedly.
 
-3. You are coming to an unknown code base, This plugin can really enhance your developer experience when working with hooks. It can give you a strong confidence for your changes done.
+1. You are coming to an unknown code base, This plugin can really enhance your developer experience when working with hooks. It can give you a strong confidence while you make changes to existing hooks.
 
-Even if you are coming to your own code after days. It becomes very diffucult to wrap you head around various multiple hooks . This library with babel plugin comes very handy to understand those scenarios.
+Even if you are coming to your own code after days. It becomes very difficult to wrap you head around various multiple hooks . This library with babel plugin helps you to undersrtand it wiothout severe cognitive thinking
 
-4. It can help beginners to learn react hooks easily. The beginners can reason about their changes easily and also avoid unintended runs of hooks.
+1. It can help beginners to learn react hooks easily. The beginners can reason about their changes easily and also avoid unintended runs of hooks. Hopefully this hook can save a lot of frustation for newcomers.
 
-To solve the above problem, I tried to create something which can enhance developer experience in this case. Let's see my try for the above problems.
+To solve all the above problems, I tried to create something which can enhance developer experience. Let's see how I tried to solve the problem.
 
-## Usage with babel plugin.
+## Usage with babel plugin (Recommended)
 
 The package can also be used with a babel plugin which make it more easy to debug.
 
@@ -162,6 +162,11 @@ const d = React.useCallback(() => {
 const d = React.useMemo(() => {
   // console.log("some thing changed , need to figure out")
 }, [a]);
+
+// uwc-debug
+const d = React.useLayoutEffect(() => {
+  // console.log("some thing changed , need to figure out")
+}, [a]);
 ```
 
 #### Debug complete file or line below it.
@@ -171,6 +176,7 @@ React.useEffect(() => {
   // console.log("some thing changed , need to figure out")
 }, [a, b, c, d]);
 
+// this comment enables tracking all the hooks below this line. so in this case useCallback and useMemo will be tracked.
 // uwc-debug-below
 const d = React.useCallback(() => {
   // console.log("some thing changed , need to figure out")
@@ -201,7 +207,7 @@ This plugin provides following information :
 
 **7.** Unique color coding and id for individual hooks for easy inspection
 
-<strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Definitely using this custom hook with babel plugin have saved me a lot of time and also understand unknown code using hooks</strong>
+<strong>Note: Frankly speaking the whole package was built, cause I was facing problems with hooks and debugging it was eating up a lot of my time. Definitely using this custom hook with babel plugin have saved me a lot of time and also understand unknown edge cases while using hooks</strong>
 
 ---
 
@@ -210,7 +216,18 @@ This plugin provides following information :
 1. When only dependency are passed as the single argument
 
 ```jsx
-import { useWhatChanged } from '@simbathesailor/use-what-changed';
+import {
+  useWhatChanged,
+  setUseWhatChange,
+} from '@simbathesailor/use-what-changed';
+
+// Only Once in your app you can set whether to enable hooks tracking or not.
+// In CRA(create-react-app) e.g. this can be done in src/index.js
+
+setUseWhatChange(process.env.NODE_ENV === 'development');
+
+// This way the tracking will only happen in devlopment mode and will not
+// happen in non-devlopment mode
 
 function App() {
   const [a, setA] = React.useState(0);
@@ -242,7 +259,7 @@ Above snapshot show the console log when b and c has changed in the above code e
 2. Pass two arguments to useWhatChanged which makes it possible for useWhatChanged to log the names of the variables also.
 
 ```jsx
-useWhatChanged([a, b, c, d], 'a, b, c, d', "anysuffix-string"); // debugs the below useEffect
+useWhatChanged([a, b, c, d], 'a, b, c, d', 'anysuffix-string'); // debugs the below useEffect
 ```
 
 <p  align="center"><img  src="demoimages/indexandname.png"  width="500"  align="center"></p>
@@ -263,11 +280,10 @@ A unique background color will be given to each title text. It helps us in recog
 
 ## Electron example
 
-
 As this lbrary is just javascript and react. It can be used whereever
 Reactjs exists.
 
-I have included the setup for elctron app with a repo example. 
+I have included the setup for elctron app with a repo example.
 
 Todos: Need to add an example for react-native, which is work in progress. I will update it in a couple of days.
 
@@ -275,11 +291,9 @@ Todos: Need to add an example for react-native, which is work in progress. I wil
 
 [Electron repo link](https://github.com/simbathesailor/electron-learner)
 
-
 ## Nextjs Example
 
 [Nextjs Example](https://github.com/simbathesailor/nextjs-uwc)
-
 
 ## Contributing
 
