@@ -171,7 +171,7 @@ Notice the comments `uwc-debug` in above examples. The comment `uwc-debug` is re
 
 #### Debug complete file or line below it.
 
-Notice the comments `uwc-debug-below` below examples.
+Notice the comments `uwc-debug-below` in below examples.
 
 ```jsx
 React.useEffect(() => {
