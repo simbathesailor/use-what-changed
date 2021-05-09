@@ -169,7 +169,11 @@ const d = React.useLayoutEffect(() => {
 }, [a]);
 ```
 
+Notice the comments `uwc-debug` in above examples. The comment `uwc-debug` is responsible for the all the magic.
+
 #### Debug complete file or line below it.
+
+Notice the comments `uwc-debug-below` below examples.
 
 ```jsx
 React.useEffect(() => {
